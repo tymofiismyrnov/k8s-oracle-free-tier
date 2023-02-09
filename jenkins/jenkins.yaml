@@ -23,11 +23,12 @@ spec:
             - name: jnlp-port
               containerPort: 50000
           volumeMounts:
-            - name: jenkins-pv
+            - name: jenkins-home
               mountPath: /var/jenkins_home
       volumes:
-        - name: jenkins-pv
-          emptyDir: {}
+        - name: jenkins-home
+          persistentVolumeClaim:
+            claimName: jenkins-pv-claim
 ---
 apiVersion: v1
 kind: Service
