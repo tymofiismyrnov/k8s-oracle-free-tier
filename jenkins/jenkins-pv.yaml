@@ -11,6 +11,6 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
+#  persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: "/mnt/jenkins"
