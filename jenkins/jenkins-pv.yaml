@@ -4,7 +4,7 @@ metadata:
   name: jenkins-pv
   namespace: jenkins
   labels:
-  type: local
+    type: local
 spec:
   storageClassName: manual
   capacity:
