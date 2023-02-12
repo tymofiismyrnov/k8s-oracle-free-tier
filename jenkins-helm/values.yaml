@@ -1,0 +1,12 @@
+cluster:
+  namespace: newjenkins
+
+app:
+  name: newjenkins
+
+container:
+  image: jenkins/jenkins:lts
+  replicas: 2
+
+ingress:
+  host: newjenkins.tymofiismyrnov.com

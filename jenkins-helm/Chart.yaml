@@ -1,0 +1,6 @@
+apiVersion : v2
+name       : Jenkins-Helm
+description: Tymofii Smyrnov's jenkins helm chart
+type       : application
+version    : 0.0.1
+appVersion : "1.0.0"
