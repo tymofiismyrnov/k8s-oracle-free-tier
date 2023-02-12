@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins-helm
+spec:
+  destination:
+    name: ''
+    namespace: newjenkins
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: jenkins-helm
+    repoURL: 'https://github.com/tymofiismyrnov/minikube-cluster'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
