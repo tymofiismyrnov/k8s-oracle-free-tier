@@ -4,17 +4,18 @@ metadata:
   name: jenkins-application
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/tymofiismyrnov/minikube-cluster'
-    path: jenkins
-    targetRevision: HEAD
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: jenkins
+  name: ''
+  namespace: jenkins
+  server: 'https://kubernetes.default.svc'
+  source:
+    path: jenkins
+    repoURL: 'https://github.com/tymofiismyrnov/minikube-cluster'
+    targetRevision: HEAD
+  project: default
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
