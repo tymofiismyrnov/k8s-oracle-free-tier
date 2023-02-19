@@ -2,16 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
 spec:
-  project: default
-  source:
-    repoURL: "https://github.com/tymofiismyrnov/minikube-cluster"
-    path: dashboard
-    targetRevision: HEAD
   destination:
-    server: "https://kubernetes.default.svc"
+    name: ''
     namespace: kubernetes-dashboard
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: dashboard
+    repoURL: 'https://github.com/tymofiismyrnov/minikube-cluster'
+    targetRevision: HEAD
+  project: default
   syncPolicy:
     automated:
       prune: true
