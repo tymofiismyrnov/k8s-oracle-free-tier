@@ -32,7 +32,7 @@ module "master-node" {
   boot_volume_size_in_gbs     = 50
   shape                       = var.vm_shape
   instance_flex_memory_in_gbs = 6
-  instance_flex_ocpus         = 1
+  instance_flex_ocpus         = 2
   instance_state              = var.instance_state
   boot_volume_backup_policy   = var.boot_backup_policy
   preserve_boot_volume        = false
