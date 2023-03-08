@@ -1,4 +1,4 @@
-- hosts: 'workers, masters'
+- hosts: "workers, masters"
   become: yes
 
   tasks:
@@ -8,10 +8,15 @@
     - name: allow 'kube' to use sudo without needing a password
       lineinfile:
         dest: /etc/sudoers
-        line: 'kube ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+        line: "kube ALL=(ALL) NOPASSWD: ALL"
+        validate: "visudo -cf %s"
 
     - name: set up authorized keys for the kube user
       authorized_key: user=kube key="{{item}}"
       with_file:
         - ~/.ssh/id_rsa.pub
+
+    - name: install ACL to avoid become unprevileged user error
+      apt:
+        name: acl
+        state: present

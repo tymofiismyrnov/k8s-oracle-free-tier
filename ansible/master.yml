@@ -13,7 +13,7 @@
       file:
         path: $HOME/.kube
         state: directory
-        mode: 755 #TODO: Change to 0755
+        mode: 0755
 
     - name: copies admin.conf to user's kube config
       copy:
