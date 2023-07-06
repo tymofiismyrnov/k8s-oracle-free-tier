@@ -32,3 +32,21 @@ resource "oci_core_security_list" "kube_security_list" {
     }
   }
 }
+
+resource "oci_core_network_security_group" "kubevcn_sg" {
+  #Required
+  compartment_id = var.compartment_ocid
+  vcn_id         = module.vcn.vcn_id
+
+  #Optional
+  display_name = "kubevcn_sg"
+
+}
+
+resource "oci_core_network_security_group_security_rule" "allow_egress" {
+  network_security_group_id = oci_core_network_security_group.kubevcn_sg.id
+  direction                 = "EGRESS"
+  protocol                  = "all"
+  destination_type          = "CIDR_BLOCK"
+  destination               = "0.0.0.0/0"
+}

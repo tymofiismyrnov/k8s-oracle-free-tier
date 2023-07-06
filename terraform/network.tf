@@ -34,3 +34,4 @@ resource "oci_core_subnet" "kube_subnet" {
   route_table_id    = module.vcn.ig_route_id
 
 }
+

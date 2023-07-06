@@ -66,7 +66,7 @@ variable "worker_node_settings" {
   })
   default = {
     "instance_count"             = 2    # how many instances do you want?
-    "availability_domain_number" = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
+    "availability_domain_number" = null # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
     "instance_name"              = "worker"
     "private_ips"                = ["10.0.1.100", "10.0.1.101"]
   }
@@ -81,7 +81,7 @@ variable "master_node_settings" {
   })
   default = {
     "instance_count"             = 1 # how many instances do you want?
-    "availability_domain_number" = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
+    "availability_domain_number" = null # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
     "instance_name"              = "master"
     "private_ips"                = ["10.0.1.200"]
   }

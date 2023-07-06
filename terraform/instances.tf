@@ -16,6 +16,7 @@ module "worker-nodes" {
   instance_state              = var.instance_state
   boot_volume_backup_policy   = var.boot_backup_policy
   preserve_boot_volume        = false
+  primary_vnic_nsg_ids        = [oci_core_network_security_group.kubevcn_sg.id]
 }
 
 module "master-node" {
@@ -36,5 +37,6 @@ module "master-node" {
   instance_state              = var.instance_state
   boot_volume_backup_policy   = var.boot_backup_policy
   preserve_boot_volume        = false
+  primary_vnic_nsg_ids        = [oci_core_network_security_group.kubevcn_sg.id]
 }
 
