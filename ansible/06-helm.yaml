@@ -1,0 +1,24 @@
+- hosts: masters
+  become: yes
+
+  tasks:
+    - name: Download Helm signing key
+      shell: "curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null"
+      become: yes
+
+    - name: Install apt-transport-https
+      apt:
+        name: apt-transport-https
+        state: present
+      become: yes
+
+    - name: Update apt cache
+      become: yes
+      apt:
+        update_cache: yes
+    
+    - name: Install Helm
+      become: yes
+      snap:
+        name: helm
+        state: present

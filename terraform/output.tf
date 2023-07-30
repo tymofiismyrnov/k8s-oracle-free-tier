@@ -5,3 +5,7 @@ output "worker_public_ips" {
 output "master_public_ips" {
   value = module.master-node.public_ip
 }
+
+# output "load_balancer_public_ip" {
+#   value = oci_load_balancer_load_balancer.kube_load_balancer.ip_address
+# }

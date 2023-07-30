@@ -1,0 +1,32 @@
+- name: Configure iptables rules
+  hosts: "workers, masters"
+  become: true
+  tasks:
+    - name: Backup current iptables rules
+      shell: sudo iptables-save > ~/iptables-rules
+      changed_when: false
+
+    - name: Remove DROP rules from iptables backup
+      shell: grep -v "DROP" ~/iptables-rules > ~/tmpfile && mv ~/tmpfile ~/iptables-rules-mod
+      changed_when: false
+
+    - name: Remove REJECT rules from iptables backup
+      shell: grep -v "REJECT" ~/iptables-rules-mod > ~/tmpfile && mv ~/tmpfile ~/iptables-rules-mod
+      changed_when: false
+
+    - name: Restore modified iptables rules
+      shell: sudo iptables-restore < ~/iptables-rules-mod
+      changed_when: false
+
+    - name: Check iptables rules
+      shell: sudo iptables -L
+      changed_when: false
+
+    - name: Save iptables rules
+      shell: sudo netfilter-persistent save
+      changed_when: false
+
+    - name: Restart iptables service
+      service:
+        name: iptables
+        state: restarted

@@ -19,7 +19,15 @@ sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get update
 sudo apt-get install ansible -y
 
-To prevent ansible from prompting 'known_hosts' add the following to the /etc/ansible/ansible.cfg
-[defaults]
-host_key_checking = False
+
+### Manual ###
+
+After applying terraform and ansible
+SSH on the master nod and install ingress controller
+- kubectl create ns ingress-nginx
+- helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+- helm repo update
+- helm install nginx-ingress ingress-nginx/ingress-nginx -n ingress-nginx --values ingress-values.yaml
+
+ingress-values.yaml file can be found in /kubernetes/nginx-ingress folder
 

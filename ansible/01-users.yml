@@ -11,12 +11,10 @@
         line: "kube ALL=(ALL) NOPASSWD: ALL"
         validate: "visudo -cf %s"
 
-
-    # don't remember what this is for
-    # - name: set up authorized keys for the kube user
-    #   authorized_key: user=kube key="{{item}}"
-    #   with_file:
-    #     - ~/.ssh/id_rsa.pub
+    - name: set up authorized keys for the kube user
+      authorized_key: user=kube key="{{item}}"
+      with_file:
+        - ~/.ssh/id_rsa.pub
 
     - name: install ACL to avoid become unprevileged user error
       apt:

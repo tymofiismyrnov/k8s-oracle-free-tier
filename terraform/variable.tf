@@ -30,7 +30,7 @@ variable "region" {
 variable "source_image_id" {
   type        = string
   description = "OS image OCID"
-  default     = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaacrj6oowfieuvdqxcwv54qqjh7gnjk6grv2pru3lmrynqz36yp6ja"
+  default     = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaawjmzx2lprukdvzb4hs52piq5cewiezrgfjvv57emiuztpcdhsoea"
 }
 
 variable "network_names" {
@@ -50,6 +50,11 @@ variable "network_settings" {
     "vcn_cidr"    = "10.0.0.0/16"
     "subnet_cidr" = "10.0.1.0/24"
   }
+}
+
+variable "my_ip" {
+  type = string
+  default = "176.37.110.70/32"  
 }
 
 variable "ssh_file_path" {

@@ -10,6 +10,7 @@ resource "oci_core_security_list" "kube_security_list" {
   }
 
   ingress_security_rules {
+    description = "Allow SSH from any"
     protocol  = "6" // tcp
     source    = "0.0.0.0/0"
     stateless = false
@@ -20,6 +21,29 @@ resource "oci_core_security_list" "kube_security_list" {
     }
   }
 
+    ingress_security_rules {
+    description = "Allow HTTP from any"
+    protocol  = "6" // tcp
+    source    = "0.0.0.0/0"
+    stateless = false
+
+    tcp_options {
+      min = 80
+      max = 80
+    }
+  }
+
+    ingress_security_rules {
+    description = "Allow HTTPS from any"
+    protocol  = "6" // tcp
+    source    = "0.0.0.0/0"
+    stateless = false
+
+    tcp_options {
+      min = 443
+      max = 443
+    }
+  }
 
   ingress_security_rules {
     description = "Allow ICMP"
@@ -31,6 +55,20 @@ resource "oci_core_security_list" "kube_security_list" {
       type = 8
     }
   }
+
+    ingress_security_rules {
+    description = "Allow All My IP"
+    protocol    = "all"
+    source      = var.my_ip
+    stateless   = false
+  }
+
+    ingress_security_rules {
+      description = "Allow All internal"
+      protocol = "all"
+      source = var.network_settings.subnet_cidr
+      stateless = false
+    }
 }
 
 resource "oci_core_network_security_group" "kubevcn_sg" {

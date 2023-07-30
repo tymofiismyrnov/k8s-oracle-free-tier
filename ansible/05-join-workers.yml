@@ -14,3 +14,7 @@
       become: yes
       command: sh /tmp/kubernetes_join_command
       register: joined_or_not
+
+    - name: Check 
+      debug:
+        msg: "{{ joined_or_not.stdout }}"
