@@ -54,7 +54,7 @@ resource "oci_load_balancer_backend_set" "kube_lb_bs" {
     }
     load_balancer_id = oci_load_balancer_load_balancer.kube_load_balancer.id
     name = "kube_lb_bs"
-    policy = "Weighted_round_robin"
+    policy = "ROUND_ROBIN"
 
 }
 
