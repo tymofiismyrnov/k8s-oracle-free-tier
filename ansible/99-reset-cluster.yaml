@@ -1,0 +1,7 @@
+- hosts: "masters, workers"
+  become: yes
+
+  tasks:
+    - name: Reset kubernetes cluster
+      shell: sudo kubeadm reset -f
+      become: yes
